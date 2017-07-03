@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.alex.admin.web.mapper.SysDeptMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="org.alex.admin.web.entity.SysDept">
+		<id column="id" property="id" />
+		<result column="deptName" property="deptName" />
+		<result column="deptDesc" property="deptDesc" />
+	</resultMap>
+
+</mapper>

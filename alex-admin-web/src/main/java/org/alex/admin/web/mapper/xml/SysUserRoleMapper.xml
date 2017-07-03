@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.alex.admin.web.mapper.SysUserRoleMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="org.alex.admin.web.entity.SysUserRole">
+		<id column="Id" property="Id" />
+		<result column="userId" property="userId" />
+		<result column="roleId" property="roleId" />
+	</resultMap>
+
+</mapper>

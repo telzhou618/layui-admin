@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<#include "/common/header.html">
+</head>
+<body class="childrenBody">
+	<form id="form1" class="layui-form form"  action="/user/doEdit" method="post">
+		<div class="layui-form-item">
+			<label class="layui-form-label">用户名</label>
+			<div class="layui-input-block">
+				<input type="hidden" name="id" value="${user.id}" />
+				<input type="text" class="layui-input" value="${user.userName}" readonly="readonly"  name="userName" jq-verify="required" placeholder="请输入用户名">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">密码</label>
+			<div class="layui-input-block">
+				<input type="tel" class="layui-input" name="password" value="${user.password}" jq-verify="required" placeholder="请输入密码">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">描述</label>
+			<div class="layui-input-block">
+				<textarea placeholder="请输入用户描述" name="userDesc" class="layui-textarea">${user.userDesc}</textarea>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn" jq-submit lay-filter="submit"><i class="iconfont icon-submit"></i> 立即提交</button>
+				<button type="reset" class="layui-btn fds"><i class="iconfont icon-reset"></i> 重置</button>
+		    </div>
+		</div>
+	</form>
+	<#include "/common/version.html">
+	<script type="text/javascript">
+		layui.use('myform');
+	</script>
+</body>
+</html>

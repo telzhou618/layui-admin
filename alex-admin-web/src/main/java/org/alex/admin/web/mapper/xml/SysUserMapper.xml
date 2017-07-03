@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.alex.admin.web.mapper.SysUserMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="org.alex.admin.web.entity.SysUser">
+		<id column="id" property="id" />
+		<result column="userName" property="userName" />
+		<result column="password" property="password" />
+		<result column="userState" property="userState" />
+		<result column="createTime" property="createTime" />
+		<result column="userDesc" property="userDesc" />
+		<result column="userImg" property="userImg" />
+		<result column="deptId" property="deptId" />
+	</resultMap>
+
+</mapper>

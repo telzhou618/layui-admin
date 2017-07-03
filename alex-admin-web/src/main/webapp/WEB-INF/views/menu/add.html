@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<#include "/common/header.html">
+</head>
+<body class="childrenBody">
+	<form class="layui-form form" id="form1" action="/menu/doAdd" method="post">
+		
+		 <div class="layui-form-item">
+		    <label class="layui-form-label">上级菜单</label>
+		    <div class="layui-input-block">
+		      <select name="interest" lay-filter="select" jq-verify="required">
+		        <option value=""></option>
+		        <#list menuList as m>
+		        	<option value="${m.id}" >
+		        		${m.menuName}
+		        	</option>
+			 	</#list>
+		      </select>
+		    </div>
+		  </div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">菜单名称</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input"  name="roleName"  jq-verify="required" placeholder="请输入角色名称">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn" jq-submit lay-filter="submit">立即提交</button>
+				<button type="reset" class="layui-btn fds">重置</button>
+		    </div>
+		</div>
+	</form>
+	<div id="menuContent" class="menuContent" style="display:none; position: absolute;">
+		<ul id="treeDemo" class="ztree" style="margin-top:0; width:160px;"></ul>
+	</div>
+	<#include "/common/version.html">
+	<script type="text/javascript">
+		layui.use('myform');
+	</script>
+</body>
+</html>

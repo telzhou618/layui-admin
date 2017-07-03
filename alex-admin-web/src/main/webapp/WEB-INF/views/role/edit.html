@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<#include "/common/header.html">
+</head>
+<body class="childrenBody">
+	<form id="form1" class="layui-form form"  action="/role/doEdit" method="post">
+		<input type="hidden" name="id" value="${role.id}" />
+		<div class="layui-form-item">
+			<label class="layui-form-label">角色名称</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input" value="${role.roleName}"  name="roleName"  jq-verify="required" placeholder="请输入角色名称">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">角色描述</label>
+			<div class="layui-input-block">
+				<textarea placeholder="请输入角色描述" name="roleDesc" class="layui-textarea">${role.roleDesc}</textarea>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn" jq-submit lay-filter="submit"><i class="iconfont icon-submit"></i> 立即提交</button>
+				<button type="reset" class="layui-btn fds"><i class="iconfont icon-reset"></i> 重置</button>
+		    </div>
+		</div>
+	</form>
+	<#include "/common/version.html">
+	<script type="text/javascript">
+		layui.use('myform');
+	</script>
+</body>
+</html>

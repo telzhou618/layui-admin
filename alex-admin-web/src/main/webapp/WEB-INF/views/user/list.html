@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<#include "/common/header.html">
+</head>
+<body class="childrenBody">
+	<blockquote class="layui-elem-quote news_search">
+		
+		<div class="layui-inline">
+			<a class="layui-btn modal-iframe"  data-params='{"content": "/user/add", "title": "添加用户","full":false,"area":"600px,350px"}'>新增</a>
+		</div>
+		<div class="layui-inline">
+			<a class="layui-btn layui-btn-danger batchDel ajax-all"  data-name="id" data-params='{"url": "/user/delete","data":"","confirm":"true","complete":"reloadTab"}'>批量删除</a>
+		</div>
+		<div class="layui-inline">
+		    <div class="layui-input-inline">
+		    	<input type="text" value="" placeholder="请输入关键字" class="layui-input search_input">
+		    </div>
+		    <a class="layui-btn search_btn">查询</a>
+		</div>
+	</blockquote>
+	<div class="layui-form links_list">
+	  	<table class="layui-table">
+		    <colgroup>
+				<col width="50">
+				<col width="30%">
+				<col>
+				<col>
+				<col>
+				<col>
+				<col width="13%">
+		    </colgroup>
+		    <thead>
+				<tr>
+					<th><input type="checkbox" id="checkall" data-name="id" lay-filter="check" lay-skin="primary"></th>
+					<th style="text-align:left;">用户名</th>
+					<th>密码</th>
+					<th>创建日期</th>
+					<th>描述</th>
+					<th>状态</th>
+					<th>操作</th>
+				</tr> 
+		    </thead>
+		    <tbody id="list"></tbody>
+		</table>
+	</div>
+	<div id="page"></div>
+	
+    <script id="list-tpl" type="text/html" data-params='{"url":"/user/page","pageid":"#page"}'>
+	{{#  layui.each(d, function(index, it){ }}
+	<tr>
+		<td><input type="checkbox" name="id" value="{{ it.id}}" lay-skin="primary" ></td>
+		<td align="left">{{it.userName}}</td>
+		<td align="left">{{it.password}}</td>
+		<td align="left">{{it.createTime}}</td>
+		<td align="left">{{it.userDesc}}</td>
+		<td align="left"><input type="checkbox" name="userState" lay-skin="switch" lay-text="启用|禁止" {{#if (parseInt(it.userState)==1){ }}checked="checked" value="true" {{# } }} lay-filter="ajax" 
+		 data-params='{"url":"/user/userState","data":"id={{it.id}}"}'></td>
+		<td align="left">
+			<a class="layui-btn layui-btn-mini modal-iframe" data-params='{"content": "/user/edit?id={{it.id}}", "title": "编辑用户","full":false,"area":"600px,350px"}'><i class="iconfont icon-edit"></i> 编辑</a>
+			<a class="layui-btn layui-btn-danger layui-btn-mini ajax" data-params='{"url": "/user/delete","confirm":true,"data":"id={{it.id}}","complete":"reloadTab"}'><i class="layui-icon">&#xe640;</i> 删除</a>
+		</td>
+	</tr>
+	{{#  }); }}
+
+	{{#  if(d.length == 0){ }}
+	  <tr><td colspan='7' align='left' style='color:#999999;'>未查到任何数据</td></tr>
+	{{#  } }}
+	</script>
+	<#include "/common/version.html">
+	<script type="text/javascript">
+		layui.use('list');
+	</script>
+</body>
+</html>

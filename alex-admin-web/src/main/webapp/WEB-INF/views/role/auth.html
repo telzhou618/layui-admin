@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<#include "/common/header.html">
+    <link rel="stylesheet" href="/plugin/ztree/css/metroStyle/metroStyle.css" type="text/css">
+</head>
+<body class="childrenBody">
+	<form id="form1" class="layui-form form"  action="/role/doAuth" method="post">
+		<input type="hidden" name="roleId" value="${role.id}" />
+		<input type="hidden" id="authId" name="menuIds" value="" />
+		<div class="layui-form-item">
+			<label class="layui-form-label">功能权限</label>
+			<div class="layui-input-block">
+				<ul id="treeDemo" class="ztree"></ul>
+			</div>
+		</div>
+		<hr />
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn" jq-submit lay-filter="submit"><i class="iconfont icon-submit"></i> 立即提交</button>
+				<button type="reset" class="layui-btn fds"><i class="iconfont icon-reset"></i> 重置</button>
+		    </div>
+		</div>
+	</form>
+	<#include "/common/version.html">
+	<script type="text/javascript" src="/plugin/ztree/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="/plugin/ztree/jquery.ztree.all.min.js"></script>
+	<script type="text/javascript">
+		layui.use('myform');
+	</script>
+	 <SCRIPT type="text/javascript">
+        var setting = {
+            view: {
+                selectedMulti: false
+            },
+            check: {
+                enable: true
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            },
+            edit: {
+                enable: false
+            },
+            callback:{
+            	onCheck:function(treeId,treeNode){
+            		var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
+            		var nodes = treeObj.getCheckedNodes(true);
+            		$("#authId").empty();
+            		var arr = [];
+            		$.each(nodes,function(i,n){
+            			arr.push(n.id);
+            		});
+            		$("#authId").val(arr.join());
+                }
+            }
+        };
+
+        $(document).ready(function(){
+            $.fn.zTree.init($("#treeDemo"), setting, ${menuList});
+        });
+
+    </SCRIPT>
+</body>
+</html>
