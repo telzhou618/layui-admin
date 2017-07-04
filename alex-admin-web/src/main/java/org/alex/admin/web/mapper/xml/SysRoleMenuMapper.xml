@@ -9,4 +9,22 @@
 		<result column="menuId" property="menuId" />
 	</resultMap>
 
+	<select id="selectAuthByRoleId" resultType="java.util.HashMap"
+		parameterType="java.lang.String">
+		SELECT
+		m.id,
+		m.pid AS pId,
+		m.`menuName` AS `name`,
+		IF(m.`deep` &lt; 3,TRUE,FALSE) AS isParent,
+		IF(m.`deep`=1,TRUE,FALSE) AS `open`,
+		t.menuId,
+		IF(t.menuId IS
+		NOT NULL,TRUE,FALSE) AS `checked`
+		FROM `sys_menu` m
+		LEFT JOIN (SELECT * FROM `sys_role_menu` rm WHERE
+		rm.roleId = #{roleId}) t
+		ON t.menuId = m.`id`
+	</select>
+
+
 </mapper>

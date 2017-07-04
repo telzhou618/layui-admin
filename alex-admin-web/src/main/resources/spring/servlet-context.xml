@@ -69,7 +69,6 @@
 	<mvc:resources location="/static/images/" mapping="/images/**" />
 	<mvc:resources location="/static/data/" mapping="/data/**" />
 	<mvc:resources location="/static/json/" mapping="/json/**" />
-	
 	<mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>  
 	<mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>  
 

@@ -8,5 +8,5 @@
 		<result column="deptName" property="deptName" />
 		<result column="deptDesc" property="deptDesc" />
 	</resultMap>
-
+	
 </mapper>

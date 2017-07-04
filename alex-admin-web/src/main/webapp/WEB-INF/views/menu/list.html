@@ -7,7 +7,7 @@
 	<blockquote class="layui-elem-quote news_search">
 		
 		<div class="layui-inline">
-			<a class="layui-btn modal-iframe"  data-params='{"content": "/menu/add", "title": "添加角色","full":false,"area":"600px,350px"}'>新增</a>
+			<a class="layui-btn modal-iframe"  data-params='{"content": "/menu/add", "title": "添加菜单","full":false,"area":"600px,480px"}'>新增</a>
 		</div>
 		<div class="layui-inline">
 			<a class="layui-btn layui-btn-danger batchDel ajax-all"  data-name="id" data-params='{"url": "/menu/delete","data":"","confirm":"true","complete":"reloadTab"}'>批量删除</a>
@@ -30,7 +30,7 @@
 				<col>
 				<col>
 				<col>
-				<col width="13%">
+				<col width="15%">
 		    </colgroup>
 		    <thead>
 				<tr>
@@ -68,7 +68,8 @@
 		<td align="left">{{it.sort}}</td>
 		<td align="left">{{it.deep}}</td>
 		<td align="left">
-			<a class="layui-btn layui-btn-mini modal-iframe" data-params='{"content": "/menu/edit?id={{it.id}}", "title": "编辑角色","full":false,"area":"600px,350px"}'><i class="iconfont icon-edit"></i> 编辑</a>
+			<a class="layui-btn layui-btn-mini modal-iframe" data-params='{"content": "/menu/edit?id={{it.id}}", "title": "编辑菜单","full":false,"area":"600px,480px"}'><i class="iconfont icon-edit"></i> 编辑</a>
+			<a class="layui-btn layui-btn-mini modal-iframe" data-params='{"content": "/menu/addItem?id={{it.id}}", "title": "添加子菜单","full":false,"area":"600px,480px"}'><i class="iconfont icon-edit"></i> 添加子菜单</a>
 			<a class="layui-btn layui-btn-danger layui-btn-mini ajax" data-params='{"url": "/menu/delete","confirm":true,"data":"id={{it.id}}","complete":"reloadTab"}'><i class="layui-icon">&#xe640;</i> 删除</a>
 		</td>
 	</tr>

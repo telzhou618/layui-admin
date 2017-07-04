@@ -4,8 +4,14 @@
 	<#include "/common/header.html">
 </head>
 <body class="childrenBody">
-	<form class="layui-form form" id="form1" action="/menu/doAdd" method="post">
-		
+	<form class="layui-form form" id="form1" action="/menu/doAddItem" method="post">
+		<div class="layui-form-item">
+			<label class="layui-form-label">上级菜单</label>
+			<div class="layui-input-block">
+				<input type="hidden" name="pid" value="${menu.id}" />
+				<input type="text" class="layui-input" readonly="readonly" name="pMenuName" value="${menu.menuName}"  jq-verify="required" placeholder="请输入上级菜单名称">
+			</div>
+		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">菜单编码</label>
 			<div class="layui-input-block">
@@ -21,25 +27,25 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">菜单URL</label>
 			<div class="layui-input-block">
-				<input type="text" class="layui-input"  name="url"  placeholder="请输入菜单URL">
+				<input type="text" class="layui-input"  name="url"   placeholder="请输入菜单URL">
 			</div>
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">菜单资源</label>
 			<div class="layui-input-block">
-				<input type="text" class="layui-input"  name="resource"  placeholder="请输入菜单资源">
+				<input type="text" class="layui-input"  name="resource"   placeholder="请输入菜单资源">
 			</div>
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">菜单图标</label>
 			<div class="layui-input-block">
-				<input type="text" class="layui-input"  name="icon"   placeholder="请输入菜单图标">
+				<input type="text" class="layui-input"  name="icon"  placeholder="请输入菜单图标">
 			</div>
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">菜单排序</label>
 			<div class="layui-input-block">
-				<input type="text" class="layui-input"  name="sort" value="0" jq-verify="number"  placeholder="请输入菜单排序">
+				<input type="text" class="layui-input"  name="sort" value="0"  jq-verify="number"  placeholder="请输入菜单排序">
 			</div>
 		</div>
 		<div class="layui-form-item">

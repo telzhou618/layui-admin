@@ -1,7 +1,10 @@
 package org.alex.admin.web.entity;
 
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
+
 import java.io.Serializable;
 
 /**
@@ -20,6 +23,7 @@ public class SysSetting extends Model<SysSetting> {
     /**
      * 主键
      */
+    @TableId(type=IdType.UUID)
 	private String Id;
     /**
      * KEY

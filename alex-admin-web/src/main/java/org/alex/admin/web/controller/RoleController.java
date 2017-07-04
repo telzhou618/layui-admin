@@ -2,15 +2,16 @@ package org.alex.admin.web.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
 import org.alex.admin.core.bean.Rest;
 import org.alex.admin.core.controller.PageController;
-import org.alex.admin.web.bean.MenuTree;
-import org.alex.admin.web.entity.SysMenu;
 import org.alex.admin.web.entity.SysRole;
+import org.alex.admin.web.entity.SysRoleMenu;
 import org.alex.admin.web.service.ISysMenuService;
+import org.alex.admin.web.service.ISysRoleMenuService;
 import org.alex.admin.web.service.ISysRoleService;
 import org.alex.admin.web.util.BaseUtil;
 import org.apache.commons.lang.StringUtils;
@@ -35,6 +36,8 @@ public class RoleController extends PageController<SysRole, ISysRoleService>{
 	@Autowired private ISysRoleService sysRoleService;
 	
 	@Autowired private ISysMenuService sysMenuService;
+	
+	@Autowired private ISysRoleMenuService sysRoleMenuService;
 	
 	@ResponseBody
 	@RequestMapping("/page")
@@ -115,9 +118,10 @@ public class RoleController extends PageController<SysRole, ISysRoleService>{
 	@RequestMapping("/auth")
 	public String auth(String id,Model model){
 		
-		List<SysMenu> menuList =  sysMenuService.selectList(null);
-		List<MenuTree> menuTreeList = BaseUtil.trans2Tree(menuList);
-		model.addAttribute("menuList", BaseUtil.toJson(menuTreeList));
+		List<Map<String, Object>> menuList =  sysRoleMenuService.selectAuthByRoleId(id);
+		/*List<MenuTree> menuTreeList = BaseUtil.trans2Tree(menuList);
+		model.addAttribute("menuList", BaseUtil.toJson(menuTreeList));*/
+		model.addAttribute("menuList", BaseUtil.toJson(menuList));
 		model.addAttribute("role",sysRoleService.selectById(id));
 		return "role/auth";
 	}
@@ -135,4 +139,18 @@ public class RoleController extends PageController<SysRole, ISysRoleService>{
 		sysMenuService.updateAuth(roleId,menuIds);
 		return Rest.ok("权限分配成功!");
 	}
+
+	@Override
+	public Rest delete(String[] id) {
+		// TODO Auto-generated method stub
+		Rest rest = super.delete(id);
+		if(rest.getStatus() == 200){
+			for(String d : id){
+				sysRoleMenuService.delete(new EntityWrapper<SysRoleMenu>().eq("roleId",d));
+			}
+		}
+		return rest;
+	}
+	
+	
 }
