@@ -14,13 +14,33 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">密码</label>
 			<div class="layui-input-block">
-				<input type="tel" class="layui-input" name="password"  jq-verify="required|password" placeholder="请输入密码">
+				<input type="password" class="layui-input" name="password"  jq-verify="required|password" placeholder="请输入密码">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">确认密码</label>
+			<div class="layui-input-block">
+				<input type="password" class="layui-input" name="password2"  jq-verify="required|password" placeholder="请再输入密码">
 			</div>
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">描述</label>
 			<div class="layui-input-block">
 				<textarea placeholder="请输入描述" name="userDesc" class="layui-textarea"></textarea>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">状态</label>
+			<div class="layui-input-block">
+				<input type="radio" name="userState" value="1" title="启用" checked="checked">
+				<input type="radio" name="userState" value="-1" title="禁止" >
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">头像</label>
+			<div class="layui-input-block">
+				<input type="file" name="file" class="layui-upload-file">
+				 <input type="hidden" name="userImg" jq-error="请上传图片" error-id="img-error">
 			</div>
 		</div>
 		<div class="layui-form-item">

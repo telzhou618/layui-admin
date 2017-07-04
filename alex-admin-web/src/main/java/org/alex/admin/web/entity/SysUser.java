@@ -36,7 +36,7 @@ public class SysUser extends Model<SysUser> {
      * 用户名
      */
 	@NotEmpty(message = "用户名不能为空")
-	@Length(min = 6, max = 16, message = "用户名长度为6-16之间")
+	@Length(min = 4, max = 16, message = "用户名长度为4-16之间")
 	@Pattern(regexp = "[a-zA-Z]{6,16}", message = "用户名不合法")
 	private String userName;
     /**
@@ -61,10 +61,6 @@ public class SysUser extends Model<SysUser> {
      * 头像
      */
 	private String userImg;
-    /**
-     * 部门主键
-     */
-	private String deptId;
 
 
 	public String getId() {
@@ -121,14 +117,6 @@ public class SysUser extends Model<SysUser> {
 
 	public void setUserImg(String userImg) {
 		this.userImg = userImg;
-	}
-
-	public String getDeptId() {
-		return deptId;
-	}
-
-	public void setDeptId(String deptId) {
-		this.deptId = deptId;
 	}
 
 	@Override

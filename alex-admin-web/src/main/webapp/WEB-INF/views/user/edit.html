@@ -4,24 +4,50 @@
 	<#include "/common/header.html">
 </head>
 <body class="childrenBody">
-	<form id="form1" class="layui-form form"  action="/user/doEdit" method="post">
+	<form class="layui-form form" id="form1" action="/user/doEdit" method="post">
+		<input type="hidden" name="id" value="${user.id}">
 		<div class="layui-form-item">
 			<label class="layui-form-label">用户名</label>
 			<div class="layui-input-block">
-				<input type="hidden" name="id" value="${user.id}" />
-				<input type="text" class="layui-input" value="${user.userName}" readonly="readonly"  name="userName" jq-verify="required" placeholder="请输入用户名">
+				<input type="text" class="layui-input" readonly="readonly" name="userName" value="${user.userName}"  jq-verify="required|username" placeholder="请输入用户名">
 			</div>
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">密码</label>
 			<div class="layui-input-block">
-				<input type="tel" class="layui-input" name="password" value="${user.password}" jq-verify="required" placeholder="请输入密码">
+				<input type="password" class="layui-input" name="password"   placeholder="请输入密码">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">确认密码</label>
+			<div class="layui-input-block">
+				<input type="password" class="layui-input" name="password2"   placeholder="请再输入密码">
 			</div>
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">描述</label>
 			<div class="layui-input-block">
-				<textarea placeholder="请输入用户描述" name="userDesc" class="layui-textarea">${user.userDesc}</textarea>
+				<textarea placeholder="请输入描述" name="userDesc" class="layui-textarea">${user.userDesc}</textarea>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">状态</label>
+			<div class="layui-input-block">
+				<#if user.userState==1>
+					<input type="radio" name="userState" value="1" title="启用" checked="checked">
+					<input type="radio" name="userState" value="-1" title="禁止" >
+				<#else>
+					<input type="radio" name="userState" value="1" title="启用" >
+					<input type="radio" name="userState" value="-1" title="禁止" checked="checked">
+				</#if>
+				
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">头像</label>
+			<div class="layui-input-block">
+				<input type="file" name="file" class="layui-upload-file">
+				 <input type="hidden" name="userImg" value="${user.userImg}" >
 			</div>
 		</div>
 		<div class="layui-form-item">

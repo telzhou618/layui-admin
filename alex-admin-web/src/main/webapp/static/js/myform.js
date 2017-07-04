@@ -17,17 +17,17 @@ layui.define(['jquery', 'tags', 'layedit', 'jqform', 'upload'], function(exports
     //自定义
     form.verify({
         username: [
-            /^[a-zA-Z]{6,16}$/, '用户名6到16位，且不能出现空格'
+            /^[a-zA-Z]{4,16}/, '用户名4到16位，且不能出现空格'
         ],
         password: [
-            /^[\S]{6,16}$/, '密码必须6到16位，且不能出现空格'
+            /^[\S]{4,16}$/, '密码必须4到16位，且不能出现空格'
         ]
     });
     tags.init();
 
     //上传文件设置
     layui.upload({
-        url: '/php/upload.php',
+        url: '/file/upload',
         before: function(input) {
             box = $(input).parent('form').parent('div').parent('.layui-input-block');
             if (box.next('div').length > 0) {
@@ -50,7 +50,7 @@ layui.define(['jquery', 'tags', 'layedit', 'jqform', 'upload'], function(exports
     //富文本框
     layedit.set({
         uploadImage: {
-            url: '/php/upload.php'
+            url: '/uploda/upload.php'
         }
     });
     var editIndex = layedit.build('content');

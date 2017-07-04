@@ -1,5 +1,6 @@
 package org.alex.admin.web.util;
 
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -10,49 +11,94 @@ import org.alex.admin.web.entity.SysMenu;
 import com.google.gson.Gson;
 
 /**
- * 常用工具了
- * Created by Gaojun.Zhou 2017年7月3日
+ * 常用工具了 Created by Gaojun.Zhou 2017年7月3日
  */
 public class BaseUtil {
 
 	/**
 	 * 将数据库菜单对象转换为Ztree对象
+	 * 
 	 * @param menuList
 	 * @return
 	 */
 	public static List<MenuTree> trans2Tree(List<SysMenu> menuList) {
 		// TODO Auto-generated method stub
-		
+
 		List<MenuTree> list = new ArrayList<MenuTree>();
-		
-		if(menuList != null && !menuList.isEmpty()){
-			for(SysMenu menu : menuList){
+
+		if (menuList != null && !menuList.isEmpty()) {
+			for (SysMenu menu : menuList) {
 				list.add(new MenuTree(menu));
 			}
 		}
-		
+
 		return list;
 	}
 
 	/**
 	 * 转换为JSON字符串
+	 * 
 	 * @param object
 	 * @return
 	 */
 	public static String toJson(Object object) {
 		// TODO Auto-generated method stub
-		if(object!=null){
+		if (object != null) {
 			return new Gson().toJson(object);
 		}
 		return "";
 	}
 
+	/**
+	 * UUID
+	 * 
+	 * @return
+	 */
 	public static String uuid() {
 		// TODO Auto-generated method stub
-		return UUID.randomUUID().toString().replaceAll("-","").toLowerCase();
+		return UUID.randomUUID().toString().replaceAll("-", "").toLowerCase();
 	}
-	
-	
+
+	/**
+	 * MD5
+	 * 
+	 * @param pwd
+	 * @return
+	 */
+	public static String MD5(String pwd) {
+		// 用于加密的字符
+		char md5String[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
+		try {
+			// 使用平台的默认字符集将此 String 编码为 byte序列，并将结果存储到一个新的 byte数组中
+			byte[] btInput = pwd.getBytes();
+
+			// 信息摘要是安全的单向哈希函数，它接收任意大小的数据，并输出固定长度的哈希值。
+			MessageDigest mdInst = MessageDigest.getInstance("MD5");
+
+			// MessageDigest对象通过使用 update方法处理数据， 使用指定的byte数组更新摘要
+			mdInst.update(btInput);
+
+			// 摘要更新之后，通过调用digest（）执行哈希计算，获得密文
+			byte[] md = mdInst.digest();
+
+			// 把密文转换成十六进制的字符串形式
+			int j = md.length;
+			char str[] = new char[j * 2];
+			int k = 0;
+			for (int i = 0; i < j; i++) { // i = 0
+				byte byte0 = md[i]; // 95
+				str[k++] = md5String[byte0 >>> 4 & 0xf]; // 5
+				str[k++] = md5String[byte0 & 0xf]; // F
+			}
+
+			// 返回经过加密后的字符串
+			return new String(str);
+
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
 	public static void main(String[] args) {
 		System.out.println(uuid());
 	}

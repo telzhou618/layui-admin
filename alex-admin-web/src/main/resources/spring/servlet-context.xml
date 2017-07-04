@@ -69,6 +69,7 @@
 	<mvc:resources location="/static/images/" mapping="/images/**" />
 	<mvc:resources location="/static/data/" mapping="/data/**" />
 	<mvc:resources location="/static/json/" mapping="/json/**" />
+	<mvc:resources location="/upload/" mapping="/upload/**" />
 	<mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>  
 	<mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>  
 
@@ -76,6 +77,15 @@
 	<!-- 开启aop，对类代理-->
 	<aop:config proxy-target-class="true"/>
 	<aop:aspectj-autoproxy proxy-target-class="true" />
+	
+	<!-- 定义文件上传解析器 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 设定默认编码 -->
+		<property name="defaultEncoding" value="UTF-8"></property>
+		<!-- 设定文件上传的最大值5MB，5*1024*1024 -->
+		<property name="maxUploadSize" value="5242880"></property>
+	</bean>
 	
 	<bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor"/>
 	

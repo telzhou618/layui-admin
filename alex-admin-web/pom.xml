@@ -41,11 +41,16 @@
 			<artifactId>velocity</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<!-- freemarker -->
 		<dependency>
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
 		</dependency>
 
 	</dependencies>

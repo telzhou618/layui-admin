@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.alex.admin.core.bean.Rest;
 import org.alex.admin.web.entity.SysUser;
 import org.alex.admin.web.service.ISysUserService;
+import org.alex.admin.web.util.BaseUtil;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,12 +59,20 @@ public class UserController{
 	
 	@ResponseBody
 	@RequestMapping("/doAdd")
-	public Rest doAdd(@Valid SysUser user,BindingResult result){
+	public Rest doAdd(@Valid SysUser user,String password2,BindingResult result){
 		
 		if(result.hasErrors()){
 			String firstError = result.getFieldErrors().get(0).getDefaultMessage();
 			return Rest.failure(firstError);
 		}
+		if(StringUtils.isBlank(user.getPassword()) 
+				|| StringUtils.isBlank(password2)){
+			throw new RuntimeException("密码和确认密码不能为空");
+		}
+		if(!user.getPassword().equals(password2)){
+			throw new RuntimeException("两次输入的密码不一致");
+		}
+		user.setPassword(BaseUtil.MD5(user.getPassword()));
 		user.setCreateTime(new Date());
 		sysUserService.insert(user);
 		return Rest.ok("添加成功!");
@@ -121,11 +130,16 @@ public class UserController{
 	 */
 	@ResponseBody
 	@RequestMapping("/doEdit")
-	public Rest doEdit(@Valid SysUser user,BindingResult result){
+	public Rest doEdit( SysUser user,String password2,BindingResult result){
 		
-		if(result.hasErrors()){
-			String firstError = result.getFieldErrors().get(0).getDefaultMessage();
-			return Rest.failure(firstError);
+		if(StringUtils.isBlank(user.getPassword()) && StringUtils.isBlank(password2)){
+			user.setPassword(null);
+		}else{
+			if(!user.getPassword().equals(password2)){
+				throw new RuntimeException("两次输入的密码不相等");
+			}else{
+				user.setPassword(BaseUtil.MD5(user.getPassword()));
+			}
 		}
 		sysUserService.updateById(user);
 		return Rest.ok("编辑成功!");
