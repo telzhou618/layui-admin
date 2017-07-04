@@ -1,12 +1,7 @@
 package org.alex.admin.web.util;
 
 import java.security.MessageDigest;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
-
-import org.alex.admin.web.bean.MenuTree;
-import org.alex.admin.web.entity.SysMenu;
 
 import com.google.gson.Gson;
 
@@ -15,25 +10,6 @@ import com.google.gson.Gson;
  */
 public class BaseUtil {
 
-	/**
-	 * 将数据库菜单对象转换为Ztree对象
-	 * 
-	 * @param menuList
-	 * @return
-	 */
-	public static List<MenuTree> trans2Tree(List<SysMenu> menuList) {
-		// TODO Auto-generated method stub
-
-		List<MenuTree> list = new ArrayList<MenuTree>();
-
-		if (menuList != null && !menuList.isEmpty()) {
-			for (SysMenu menu : menuList) {
-				list.add(new MenuTree(menu));
-			}
-		}
-
-		return list;
-	}
 
 	/**
 	 * 转换为JSON字符串

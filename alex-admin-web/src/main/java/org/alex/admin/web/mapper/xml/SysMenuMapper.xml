@@ -14,5 +14,17 @@
 		<result column="code" property="code" />
 		<result column="resource" property="resource" />
 	</resultMap>
-
+	
+	<select id="selectMenuByUid" resultType="java.util.HashMap">
+			SELECT
+			 m.`id`,
+			 m.`menuName` AS title,
+			 m.icon,
+			 m.`url` AS href,
+			 FALSE AS spread
+			FROM `sys_menu` m
+			WHERE m.`pid` = #{pid}
+			ORDER BY sort ASC
+	</select>
+	
 </mapper>

@@ -1,5 +1,8 @@
 package org.alex.admin.web.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.alex.admin.web.entity.SysMenu;
 
 import com.baomidou.mybatisplus.service.IService;
@@ -20,5 +23,13 @@ public interface ISysMenuService extends IService<SysMenu> {
 	 * @param menuIds
 	 */
 	void updateAuth(String roleId, String menuIds);
+	
+	/**
+	 * 查询用户菜单
+	 * @param uid 用户ID
+	 * @param pid 上级菜单ID
+	 * @return
+	 */
+	List<Map<String, Object>> selectMenuByUid(String uid, String pid);
 	
 }

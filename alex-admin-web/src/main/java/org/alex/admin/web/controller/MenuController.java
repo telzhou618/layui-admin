@@ -1,5 +1,8 @@
 package org.alex.admin.web.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.validation.Valid;
 
 import org.alex.admin.core.bean.Rest;
@@ -11,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -160,4 +164,20 @@ public class MenuController extends PageController<SysMenu, ISysMenuService>{
 		sysMenuService.insert(menu);
 		return Rest.ok("添加成功!");
 	}
+	
+	/**
+	 * 获取当前用户的菜单
+	 * @return
+	 */
+	@ResponseBody
+	@GetMapping("/leftmenu")
+	public Rest leftmenu(){
+		
+		List<Map<String, Object>> list = sysMenuService.selectMenuByUid(null,"0");
+		for(Map<String, Object> m : list){
+			m.put("children", sysMenuService.selectMenuByUid(null,m.get("id").toString()));
+		}
+		return Rest.okData(list);
+	}
+	
 }

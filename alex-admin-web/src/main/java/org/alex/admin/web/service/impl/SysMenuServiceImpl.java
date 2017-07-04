@@ -1,6 +1,7 @@
 package org.alex.admin.web.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.alex.admin.web.entity.SysMenu;
 import org.alex.admin.web.entity.SysRoleMenu;
@@ -27,19 +28,22 @@ import com.google.common.base.Splitter;
 @Service
 public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> implements ISysMenuService {
 
-	@Autowired private SysRoleMenuMapper	sysRoleMenuMapper;
-	
+	@Autowired
+	private SysRoleMenuMapper sysRoleMenuMapper;
+	@Autowired
+	private SysMenuMapper sysMenuMapper;
+
 	/**
 	 * 分配权限
 	 */
 	@Override
 	public void updateAuth(String roleId, String menuIds) {
 		// TODO Auto-generated method stub
-		
+
 		sysRoleMenuMapper.delete(new EntityWrapper<SysRoleMenu>().eq("roleId", roleId));
-		if(StringUtils.isNotBlank(menuIds)){
+		if (StringUtils.isNotBlank(menuIds)) {
 			List<String> menuIdList = Splitter.on(",").splitToList(menuIds);
-			for(String menuId : menuIdList){
+			for (String menuId : menuIdList) {
 				SysRoleMenu roleMenu = new SysRoleMenu();
 				roleMenu.setId(BaseUtil.uuid());
 				roleMenu.setMenuId(menuId);
@@ -47,7 +51,13 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
 				sysRoleMenuMapper.insert(roleMenu);
 			}
 		}
-		
+
 	}
-	
+
+	@Override
+	public List<Map<String, Object>> selectMenuByUid(String uid, String pid) {
+		// TODO Auto-generated method stub
+		return sysMenuMapper.selectMenuByUid(uid, pid);
+	}
+
 }
