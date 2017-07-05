@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<#include "/common/header.html">
+</head>
+<body class="childrenBody">
+	<blockquote class="layui-elem-quote news_search">
+		<form class="layui-form form" action="/log/page" method="get">
+		<div class="layui-inline">
+		    <div class="layui-input-inline">
+		    	<input type="text" value="" name="keyword" placeholder="日志/用户" class="layui-input search_input">
+		    </div>
+		    <button lay-submit class="layui-btn" lay-filter="search">查找</button>
+		</div>
+		</form>
+	</blockquote>
+	<div class="layui-form links_list">
+	  	<table class="layui-table">
+		    <colgroup>
+				<col>
+				<col>
+				<col>
+				<col>
+				<col>
+				<col width="16%">
+		    </colgroup>
+		    <thead>
+				<tr>
+					<th style="text-align:left;">用户</th>
+					<th>日志</th>
+					<th>日期</th>
+					<th>地址</th>
+					<th>操作</th>
+				</tr> 
+		    </thead>
+		    <tbody id="list"></tbody>
+		</table>
+	</div>
+	<div id="page"></div>
+	
+    <script id="list-tpl" type="text/html" data-params='{"url":"/log/page","pageid":"#page"}'>
+	{{#  layui.each(d, function(index, it){ }}
+	<tr>
+		<td align="left">{{it.userName}}</td>
+		<td align="left">{{it.title}}</td>
+		<td align="left">{{it.createTime}}</td>
+		<td align="left">{{it.url}}</td>
+		<td align="left">
+			<a class="layui-btn layui-btn-mini modal-iframe" data-params='{"content": "/log/params?id={{it.id}}", "title": "查看参数","full":false,"area":"600px,350px"}'><i class="iconfont icon-edit"></i> 查看参数</a>
+		</td>
+	</tr>
+	{{#  }); }}
+
+	{{#  if(d.length == 0){ }}
+	  <tr><td colspan='5' align='left' style='color:#999999;'>未查到任何数据</td></tr>
+	{{#  } }}
+	</script>
+	<#include "/common/version.html">
+	<script type="text/javascript">
+		layui.use('list');
+	</script>
+</body>
+</html>

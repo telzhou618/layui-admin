@@ -17,10 +17,10 @@ layui.define(['jquery', 'tags', 'layedit', 'jqform', 'upload'], function(exports
     //自定义
     form.verify({
         username: [
-            /^[a-zA-Z]{4,16}/, '用户名4到16位，且不能出现空格'
+            /^[a-zA-Z][a-zA-Z0-9_]{4,16}$/, '用户名字母开头，允许5-16字节，允许字母数字下划线'
         ],
         password: [
-            /^[\S]{4,16}$/, '密码必须4到16位，且不能出现空格'
+            /^[a-zA-Z]\w{5,17}$/, '密码以字母开头，长度在6~18之间，只能包含字母、数字和下划线'
         ]
     });
     tags.init();
