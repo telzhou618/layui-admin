@@ -335,6 +335,14 @@ layui.define(['form', 'layer', 'element'], function(exports) {
         layui.each(fieldElem, function(_, item) {
             if (!item.name) return;
             if (/^checkbox|radio$/.test(item.type) && !item.checked) return;
+            if(/^checkbox$/.test(item.type)){
+            	if(!field[item.name]){
+            		field[item.name] = [item.value];
+            	}else{
+            		field[item.name].push(item.value);
+            	} 
+            	return;
+            }
             field[item.name] = item.value;
         });
 

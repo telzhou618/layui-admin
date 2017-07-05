@@ -3,8 +3,6 @@ package org.alex.admin.web.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.validation.constraints.Pattern;
-
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -36,8 +34,6 @@ public class SysUser extends Model<SysUser> {
      * 用户名
      */
 	@NotEmpty(message = "用户名不能为空")
-	@Length(min = 4, max = 16, message = "用户名长度为4-16之间")
-	@Pattern(regexp = "[a-zA-Z]{6,16}", message = "用户名不合法")
 	private String userName;
     /**
      * 密码

@@ -30,6 +30,7 @@ layui.define(["element","jquery","layer"],function(exports){
             dataType: "JSON",
             data: {},
             timeout: 50000,
+            async:false,
             error: function(XMLHttpRequest, status, thrownError) {
                 layer.close(l);
                 layer.msg('网络繁忙，请稍后重试...');

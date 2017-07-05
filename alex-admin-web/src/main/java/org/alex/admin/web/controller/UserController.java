@@ -1,11 +1,17 @@
 package org.alex.admin.web.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.Valid;
 
 import org.alex.admin.core.bean.Rest;
+import org.alex.admin.core.controller.PageController;
+import org.alex.admin.web.entity.SysRole;
 import org.alex.admin.web.entity.SysUser;
+import org.alex.admin.web.entity.SysUserRole;
+import org.alex.admin.web.service.ISysRoleService;
+import org.alex.admin.web.service.ISysUserRoleService;
 import org.alex.admin.web.service.ISysUserService;
 import org.alex.admin.web.util.BaseUtil;
 import org.apache.commons.lang.ArrayUtils;
@@ -20,15 +26,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.google.common.collect.Lists;
 /**
  * 标准的Rest接口,实例控制器
  * Created by Gaojun.Zhou 2017年6月8日
  */
 @Controller
 @RequestMapping("/user")
-public class UserController{  
+public class UserController extends PageController<SysUser, ISysUserService>{  
 	
 	@Autowired private ISysUserService sysUserService;
+	@Autowired private ISysRoleService sysRoleService;
+	@Autowired private ISysUserRoleService sysUserRoleService;
 	
 	
 	@ResponseBody
@@ -47,19 +56,16 @@ public class UserController{
 		
 	}
 	
-	@RequestMapping("/list")
-	public String list(){
-		return "user/list";
-	}
-	
-	@RequestMapping("/add")
-	public String add(){
+	@Override
+	public String add(Model model){
+		List<SysRole> roleList = sysRoleService.selectList(new EntityWrapper<SysRole>().eq("roleState",1).orderBy("createTime"));
+		model.addAttribute("roleList",roleList);
 		return "user/add";
 	}
 	
 	@ResponseBody
 	@RequestMapping("/doAdd")
-	public Rest doAdd(@Valid SysUser user,String password2,BindingResult result){
+	public Rest doAdd(@Valid SysUser user,String password2,@RequestParam(value = "roleIds[]",required=false)String[] roleIds,BindingResult result){
 		
 		if(result.hasErrors()){
 			String firstError = result.getFieldErrors().get(0).getDefaultMessage();
@@ -74,7 +80,7 @@ public class UserController{
 		}
 		user.setPassword(BaseUtil.MD5(user.getPassword()));
 		user.setCreateTime(new Date());
-		sysUserService.insert(user);
+		sysUserService.addUser(user,roleIds);
 		return Rest.ok("添加成功!");
 	}
 	
@@ -101,24 +107,20 @@ public class UserController{
 		if(ArrayUtils.isEmpty(id)){
 			return Rest.failure("客户端传入参数不能为空");
 		}
-		boolean b = true;
-		for(String d : id){
-			if(!sysUserService.deleteById(d)){
-				b = false;
-			}
-		}
-		return b ? Rest.ok("删除成功") : Rest.failure("删除失败");
+		sysUserService.deleteUser(id);
+		return Rest.ok("删除成功");
 	}
 	
 	/**
 	 * 编辑
 	 * @return
 	 */
-	@RequestMapping("/edit")
+	@Override
 	public String edit(String id,Model model){
 		
-		SysUser user = sysUserService.selectById(id);
-		model.addAttribute("user",user);
+		model.addAttribute("user",sysUserService.selectById(id));
+		model.addAttribute("roleList",sysRoleService.selectList(new EntityWrapper<SysRole>().eq("roleState",1).orderBy("createTime")));
+		model.addAttribute("userRoleList", Lists.transform(sysUserRoleService.selectList(new EntityWrapper<SysUserRole>().eq("userId",id)),ur->ur.getRoleId()).toArray());
 		return "user/edit";
 	}
 	
@@ -130,7 +132,7 @@ public class UserController{
 	 */
 	@ResponseBody
 	@RequestMapping("/doEdit")
-	public Rest doEdit( SysUser user,String password2,BindingResult result){
+	public Rest doEdit(SysUser user,String password2,@RequestParam(value = "roleIds[]",required=false) String[] roleIds,BindingResult result){
 		
 		if(StringUtils.isBlank(user.getPassword()) && StringUtils.isBlank(password2)){
 			user.setPassword(null);
@@ -141,7 +143,19 @@ public class UserController{
 				user.setPassword(BaseUtil.MD5(user.getPassword()));
 			}
 		}
-		sysUserService.updateById(user);
+		sysUserService.updateUser(user,roleIds);
 		return Rest.ok("编辑成功!");
+	}
+
+	@Override
+	public String getViewName() {
+		// TODO Auto-generated method stub
+		return "user";
+	}
+
+	@Override
+	public String getModelName() {
+		// TODO Auto-generated method stub
+		return "user";
 	}
 }

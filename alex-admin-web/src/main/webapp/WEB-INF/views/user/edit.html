@@ -43,6 +43,18 @@
 				
 			</div>
 		</div>
+		 <div class="layui-form-item">
+		    <label class="layui-form-label">权限</label>
+		    <div class="layui-input-block">
+		      <#list roleList as role>
+		      	<#if userRoleList?seq_contains(role.id)>
+		      		<input type="checkbox" name="roleIds" title="${role.roleName}" value="${role.id}" checked="checked">
+		      	<#else>
+		      		<input type="checkbox" name="roleIds" title="${role.roleName}" value="${role.id}">
+		      	</#if>
+		      </#list>
+		    </div>
+		  </div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">头像</label>
 			<div class="layui-input-block">
