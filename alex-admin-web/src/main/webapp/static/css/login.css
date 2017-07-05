@@ -1,0 +1,59 @@
+.header {
+	height: 60px;
+    border-bottom: none;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+.login-header {
+	position: fixed;
+	background-color: #23262E;
+}
+.login-logo {
+	width: 1075px;
+	margin: 0 auto;
+	position: relative;
+}
+.login-logo a{
+	     color: white;
+    font-size: 24px;
+    padding: 10px;
+    line-height: 25px;
+}
+.login-logo .logo,
+.frame-header .logo {
+	position: absolute;
+    left: 10px;
+    top: 5px;
+}
+.login-logo .logo img,
+.frame-header .logo img {
+    width: auto;
+    height: 50px;
+}
+.login-main {
+    width: 1075px;
+    min-height: 600px;
+    margin: 0 auto 15px;
+}
+.login-panel {
+	padding: 20px;
+	margin-bottom: 10px;
+    background-color: #fff;
+    border-radius: 2px;
+}
+.login-panel-user {
+	padding-top: 5px;
+}
+.layui-form-pane .login-vercode {
+	padding: 0;
+	margin: 0;
+}
+.frame-header .layui-nav {
+	position: absolute;
+    right: 10px;
+    top: 0;
+    padding: 0;
+    background: none;
+}

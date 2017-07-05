@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<#include "/common/header.html">
+	<link rel="stylesheet" href="/css/login.css" media="all" />
+	<style type="text/css">
+		html {background-color: #eee;}
+		html,body{overflow-x: hidden;overflow-y: auto;}
+		html body{margin-top: 80px;}
+		body{line-height:24px;}
+	</style>
+</head>
+<body class="main_body">
+<div class="layui-header login-header header">
+		<div class="layui-main">
+			<div class="login-logo">
+				<a class="logo" href="/">
+			        Alex-admin
+			    </a>
+			</div>
+		</div>
+	</div>
+	<div class="login-main layui-clear">
+		<div class="login-panel login-panel-user">
+			<div class="layui-tab layui-tab-brief">
+				<ul class="layui-tab-title">
+					<li class="layui-this">登录</li>
+				</ul>
+				<div class="layui-form layui-tab-content" style="padding: 20px 0;">
+					<div class="layui-tab-item layui-show">
+						<div class="layui-form layui-form-pane">
+							<form class="layui-form" action="/doLogin">
+								<div class="layui-form-item">
+									<label for="J_username" class="layui-form-label">用户名</label>
+									<div class="layui-input-inline">
+										<input type="text" id="J_username" name="username" required=""
+											lay-verify="required" autocomplete="off" class="layui-input">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label for="J_password" class="layui-form-label">密码</label>
+									<div class="layui-input-inline">
+										<input type="password" id="J_password" name="password" required=""
+											lay-verify="required" autocomplete="off" class="layui-input">
+									</div>
+								</div>
+								<!-- <div class="layui-form-item">
+									<label for="J_vercode" class="login-vercode layui-form-label">
+										<img id="J_validateCode" src="" onclick="this.src='${__URL__}/servlet/validateCodeServlet?width=110&height=38&'+Math.random();" style="cursor: pointer;" title="点击重新获取"/>
+									</label>
+									<div class="layui-input-inline">
+										<input type="text" id="J_vercode" name="validateCode" required=""
+											lay-verify="required" placeholder="请输入验证码" autocomplete="off"
+											class="layui-input">
+									</div>
+								</div> -->
+								<div class="layui-form-item">
+									<button class="layui-btn" type="button" lay-filter="login" lay-submit>立即登录</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="/layui/layui.js"></script>
+	<script type="text/javascript">
+
+	layui.use(['layer','form'], function(){
+		var $ = layui.jquery
+		,form = layui.form()
+		,layer = layui.layer;
+		
+		function loginSuccess() {
+			layer.msg("登录成功", {icon:6, time:1000}, function(index){
+	            layer.close(index);
+	            window.location.href = '/';
+	        });
+		}
+		function loginError(msg) {
+			layer.msg(msg, {icon:5, time:2000}, function(index){
+				//$("#J_validateCode").attr('src', '/servlet/validateCodeServlet?width=110&height=38&'+Math.random());
+	            layer.close(index);
+	        });
+		}
+		//监听提交
+	  	form.on('submit(login)', function(data){
+	  		var $btnLogin = $("button[lay-filter='login']");
+	  		$btnLogin.addClass('layui-btn-disabled').text('登录中...');
+	  		$.post('/doLogin', data.field, function(ret) {
+	  			if(ret.status==200){
+	  				loginSuccess();
+	  			}else{
+	  				 loginError(ret.msg);
+	  			}
+	  			$btnLogin.removeClass('layui-btn-disabled').text('立即登录');
+	  		});
+	    	return false;
+	  	});
+	});
+	</script>
+</body>
+</html>
