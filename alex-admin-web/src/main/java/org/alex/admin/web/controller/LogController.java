@@ -43,7 +43,7 @@ public class LogController extends PageController<SysLog, ISysLogService>{
 		
 		EntityWrapper<SysLog> ew = new EntityWrapper<SysLog>();
 		if(StringUtils.isNotBlank(keyword)){
-			ew.like("title", keyword).or().like("userName",keyword);
+			ew.like("logTitle", keyword).or().like("userName",keyword).or().like("logContent",keyword);
 		}
 		Page<SysLog> pageData = sysLogService.selectPage(new Page<SysLog>(page, size),ew);
 		
@@ -59,7 +59,7 @@ public class LogController extends PageController<SysLog, ISysLogService>{
 	@ResponseBody
 	@RequestMapping("/params")
 	public String params(String id){
-		return sysLogService.selectById(id).getParams();
+		return sysLogService.selectById(id).getRequestParams();
 	}
 
 	@Override

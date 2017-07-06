@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.alex.admin.core.anno.Log;
 import org.alex.admin.core.anno.Resource;
 import org.alex.admin.core.bean.Rest;
 import org.alex.admin.core.controller.PageController;
@@ -57,6 +58,7 @@ public class RoleController extends PageController<SysRole, ISysRoleService>{
 		
 	}
 	
+	@Log("新增角色")
 	@Resource("addRole")
 	@ResponseBody
 	@RequestMapping("/doAdd")
@@ -71,7 +73,7 @@ public class RoleController extends PageController<SysRole, ISysRoleService>{
 		return Rest.ok("添加成功!");
 	}
 	
-	
+	@Log("更新角色状态")
 	@Resource("updateStateRole")
 	@ResponseBody
 	@RequestMapping("/roleState")
@@ -89,6 +91,7 @@ public class RoleController extends PageController<SysRole, ISysRoleService>{
 	 * @param result
 	 * @return
 	 */
+	@Log("编辑角色")
 	@Resource("editRole")
 	@ResponseBody
 	@RequestMapping("/doEdit")
@@ -139,6 +142,7 @@ public class RoleController extends PageController<SysRole, ISysRoleService>{
 	 * @param result
 	 * @return
 	 */
+	@Log("角色授权")
 	@Resource("authRole")
 	@ResponseBody
 	@RequestMapping("/doAuth")
@@ -147,6 +151,7 @@ public class RoleController extends PageController<SysRole, ISysRoleService>{
 		return Rest.ok("权限分配成功!");
 	}
 
+	@Log("删除角色")
 	@Resource("deleteRole")
 	@Override
 	public Rest delete(String[] id) {

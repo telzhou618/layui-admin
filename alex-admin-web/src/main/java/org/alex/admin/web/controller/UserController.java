@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.alex.admin.core.anno.Log;
 import org.alex.admin.core.anno.Resource;
 import org.alex.admin.core.bean.Rest;
 import org.alex.admin.core.controller.PageController;
@@ -65,6 +66,7 @@ public class UserController extends PageController<SysUser, ISysUserService>{
 		return "user/add";
 	}
 	
+	@Log("新增用户")
 	@Resource("addUser")
 	@ResponseBody
 	@RequestMapping("/doAdd")
@@ -87,7 +89,7 @@ public class UserController extends PageController<SysUser, ISysUserService>{
 		return Rest.ok("添加成功!");
 	}
 	
-	
+	@Log("更新用户状态")
 	@Resource("updateStateUser")
 	@ResponseBody
 	@RequestMapping("/userState")
@@ -104,6 +106,7 @@ public class UserController extends PageController<SysUser, ISysUserService>{
 	 * @param id
 	 * @return
 	 */
+	@Log("删除用户")
 	@Resource("deleteUser")
 	@ResponseBody
 	@RequestMapping("/delete")
@@ -135,6 +138,7 @@ public class UserController extends PageController<SysUser, ISysUserService>{
 	 * @param result
 	 * @return
 	 */
+	@Log("编辑用户")
 	@Resource("editUser")
 	@ResponseBody
 	@RequestMapping("/doEdit")

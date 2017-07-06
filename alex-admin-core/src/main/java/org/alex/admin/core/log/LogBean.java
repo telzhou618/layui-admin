@@ -27,6 +27,10 @@ public class LogBean {
 	/**
 	 * 请求方法
 	 */
+	private String requestUrl;
+	/**
+	 * 请求方法
+	 */
 	private String requestMethod;
 	/**
 	 * 请求参数
@@ -95,10 +99,20 @@ public class LogBean {
 		this.other = other;
 	}
 
+	public String getRequestUrl() {
+		return requestUrl;
+	}
+
+	public void setRequestUrl(String requestUrl) {
+		this.requestUrl = requestUrl;
+	}
+
 	@Override
 	public String toString() {
 		return "LogBean [logTitle=" + logTitle + ", logContent=" + logContent + ", clientIp=" + clientIp + ", logTime="
-				+ logTime + ", requestMethod=" + requestMethod + ", requestParams=" + requestParams + ", other=" + other
-				+ "]";
+				+ logTime + ", requestUrl=" + requestUrl + ", requestMethod=" + requestMethod + ", requestParams="
+				+ requestParams + ", other=" + other + "]";
 	}
+
+	
 }

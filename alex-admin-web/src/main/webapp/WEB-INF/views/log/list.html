@@ -22,14 +22,17 @@
 				<col>
 				<col>
 				<col>
+				<col>
 				<col width="16%">
 		    </colgroup>
 		    <thead>
 				<tr>
 					<th style="text-align:left;">用户</th>
-					<th>日志</th>
+					<th>日志标题#日志内容</th>
+					<th>客户端IP</th>
+					<th>请求URI</th>
+					<th>请求方式</th>
 					<th>日期</th>
-					<th>地址</th>
 					<th>操作</th>
 				</tr> 
 		    </thead>
@@ -42,9 +45,11 @@
 	{{#  layui.each(d, function(index, it){ }}
 	<tr>
 		<td align="left">{{it.userName}}</td>
-		<td align="left">{{it.title}}</td>
-		<td align="left">{{it.createTime}}</td>
-		<td align="left">{{it.url}}</td>
+		<td align="left">{{it.logTitle}} # {{it.logContent}}</td>
+		<td align="left">{{it.clientIp}}</td>
+		<td align="left">{{it.requestUrl}}</td>
+		<td align="left">{{it.requestMethod}}</td>
+		<td align="left">{{it.logTime}}</td>
 		<td align="left">
 			<a class="layui-btn layui-btn-mini modal-iframe" data-params='{"content": "/log/params?id={{it.id}}", "title": "查看参数","full":false,"area":"600px,350px"}'><i class="iconfont icon-edit"></i> 查看参数</a>
 		</td>

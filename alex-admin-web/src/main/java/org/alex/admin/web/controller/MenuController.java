@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.alex.admin.core.anno.Log;
 import org.alex.admin.core.anno.Resource;
 import org.alex.admin.core.bean.Rest;
 import org.alex.admin.core.controller.PageController;
@@ -56,6 +57,7 @@ public class MenuController extends PageController<SysMenu, ISysMenuService>{
 	 * @param result
 	 * @return
 	 */
+	@Log("新增菜单")
 	@Resource("addMenu")
 	@ResponseBody
 	@RequestMapping("/doAdd")
@@ -76,6 +78,7 @@ public class MenuController extends PageController<SysMenu, ISysMenuService>{
 	 * @param result
 	 * @return
 	 */
+	@Log("编辑菜单")
 	@Resource("editMenu")
 	@ResponseBody
 	@RequestMapping("/doEdit")
@@ -150,6 +153,7 @@ public class MenuController extends PageController<SysMenu, ISysMenuService>{
 	 * @param result
 	 * @return
 	 */
+	@Log("编辑子菜单")
 	@Resource("addMenu")
 	@ResponseBody
 	@RequestMapping("/doAddItem")

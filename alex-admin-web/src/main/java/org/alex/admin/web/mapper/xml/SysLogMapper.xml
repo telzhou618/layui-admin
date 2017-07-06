@@ -6,10 +6,14 @@
 	<resultMap id="BaseResultMap" type="org.alex.admin.web.entity.SysLog">
 		<id column="id" property="id" />
 		<result column="userName" property="userName" />
-		<result column="title" property="title" />
-		<result column="url" property="url" />
-		<result column="params" property="params" />
-		<result column="createTime" property="createTime" />
+		<result column="logTitle" property="logTitle" />
+		<result column="logContent" property="logContent" />
+		<result column="clientIp" property="clientIp" />
+		<result column="requestUrl" property="requestUrl" />
+		<result column="requestMethod" property="requestMethod" />
+		<result column="requestParams" property="requestParams" />
+		<result column="logTime" property="logTime" />
+		<result column="other" property="other" />
 	</resultMap>
 
 </mapper>

@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.alex.admin.core.anno.Log;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.RandomStringUtils;
@@ -37,6 +38,7 @@ public class FileUploadController{
 	 * @return
 	 * @throws IOException
 	 */
+	@Log("文件上传")
 	@ResponseBody
 	@RequestMapping("/file/upload")
 	public Map<String, Object> fileUpload( @RequestParam MultipartFile[] file,HttpServletRequest request) throws IOException{

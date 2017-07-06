@@ -1,12 +1,12 @@
 package org.alex.admin.web.entity;
 
+import java.io.Serializable;
 import java.util.Date;
+
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
-
-import java.io.Serializable;
 
 /**
  * <p>
@@ -14,7 +14,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author GaoJun.Zhou
- * @since 2017-06-30
+ * @since 2017-07-06
  */
 @TableName("sys_log")
 public class SysLog extends Model<SysLog> {
@@ -31,21 +31,37 @@ public class SysLog extends Model<SysLog> {
      */
 	private String userName;
     /**
-     * 日志
+     * 日志标题
      */
-	private String title;
+	private String logTitle;
     /**
-     * 地址
+     * 日志内容
      */
-	private String url;
+	private String logContent;
+    /**
+     * 客户端IP
+     */
+	private String clientIp;
+    /**
+     * 请求URL
+     */
+	private String requestUrl;
+    /**
+     * 请求方式
+     */
+	private String requestMethod;
     /**
      * 参数
      */
-	private String params;
+	private String requestParams;
     /**
      * 日志时间
      */
-	private Date createTime;
+	private Date logTime;
+    /**
+     * 备用
+     */
+	private String other;
 
 
 	public String getId() {
@@ -64,36 +80,68 @@ public class SysLog extends Model<SysLog> {
 		this.userName = userName;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getLogTitle() {
+		return logTitle;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setLogTitle(String logTitle) {
+		this.logTitle = logTitle;
 	}
 
-	public String getUrl() {
-		return url;
+	public String getLogContent() {
+		return logContent;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setLogContent(String logContent) {
+		this.logContent = logContent;
 	}
 
-	public String getParams() {
-		return params;
+	public String getClientIp() {
+		return clientIp;
 	}
 
-	public void setParams(String params) {
-		this.params = params;
+	public void setClientIp(String clientIp) {
+		this.clientIp = clientIp;
 	}
 
-	public Date getCreateTime() {
-		return createTime;
+	public String getRequestUrl() {
+		return requestUrl;
 	}
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
+	public void setRequestUrl(String requestUrl) {
+		this.requestUrl = requestUrl;
+	}
+
+	public String getRequestMethod() {
+		return requestMethod;
+	}
+
+	public void setRequestMethod(String requestMethod) {
+		this.requestMethod = requestMethod;
+	}
+
+	public String getRequestParams() {
+		return requestParams;
+	}
+
+	public void setRequestParams(String requestParams) {
+		this.requestParams = requestParams;
+	}
+
+	public Date getLogTime() {
+		return logTime;
+	}
+
+	public void setLogTime(Date logTime) {
+		this.logTime = logTime;
+	}
+
+	public String getOther() {
+		return other;
+	}
+
+	public void setOther(String other) {
+		this.other = other;
 	}
 
 	@Override
