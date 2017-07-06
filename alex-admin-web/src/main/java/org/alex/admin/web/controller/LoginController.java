@@ -2,6 +2,7 @@ package org.alex.admin.web.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.alex.admin.core.anno.PassLogin;
 import org.alex.admin.core.bean.Rest;
 import org.alex.admin.web.entity.SysUser;
 import org.alex.admin.web.service.ISysUserService;
@@ -27,6 +28,7 @@ public class LoginController{
 	 * 登录
 	 * @return
 	 */
+	@PassLogin
 	@GetMapping("/login")
 	public String login(){
 		return "login";
@@ -40,6 +42,7 @@ public class LoginController{
 	 * @param request
 	 * @return
 	 */
+	@PassLogin
 	@ResponseBody
 	@PostMapping("/doLogin")
 	public Rest doLogin(String username,String password,HttpServletRequest request){
@@ -64,6 +67,7 @@ public class LoginController{
 	 * 注销
 	 * @return
 	 */
+	@PassLogin
 	@GetMapping("/logout")
     public String logout(HttpServletRequest request){
 		request.getSession().invalidate();

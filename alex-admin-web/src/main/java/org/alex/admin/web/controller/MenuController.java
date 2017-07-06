@@ -3,11 +3,13 @@ package org.alex.admin.web.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.alex.admin.core.bean.Rest;
 import org.alex.admin.core.controller.PageController;
 import org.alex.admin.web.entity.SysMenu;
+import org.alex.admin.web.entity.SysUser;
 import org.alex.admin.web.service.ISysMenuService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -171,11 +173,11 @@ public class MenuController extends PageController<SysMenu, ISysMenuService>{
 	 */
 	@ResponseBody
 	@GetMapping("/leftmenu")
-	public Rest leftmenu(){
-		
-		List<Map<String, Object>> list = sysMenuService.selectMenuByUid(null,"0");
+	public Rest leftmenu(HttpServletRequest request){
+		String uid = ((SysUser)request.getSession().getAttribute("session_user")).getId();
+		List<Map<String, Object>> list = sysMenuService.selectMenuByUid(uid,"0");
 		for(Map<String, Object> m : list){
-			m.put("children", sysMenuService.selectMenuByUid(null,m.get("id").toString()));
+			m.put("children", sysMenuService.selectMenuByUid(uid,m.get("id").toString()));
 		}
 		return Rest.okData(list);
 	}

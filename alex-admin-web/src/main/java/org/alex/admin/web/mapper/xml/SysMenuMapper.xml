@@ -24,6 +24,11 @@
 			 FALSE AS spread
 			FROM `sys_menu` m
 			WHERE m.`pid` = #{pid}
+			AND m.`id` IN (
+				SELECT  DISTINCT rm.`menuId` FROM sys_user_role ur 
+				LEFT JOIN sys_role_menu rm ON ur.`roleId` = rm.`roleId`
+				WHERE ur.`userId` = #{uid}
+			)
 			ORDER BY sort ASC
 	</select>
 	

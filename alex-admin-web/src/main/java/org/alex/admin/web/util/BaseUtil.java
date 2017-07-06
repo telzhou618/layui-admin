@@ -1,7 +1,11 @@
 package org.alex.admin.web.util;
 
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
@@ -74,7 +78,31 @@ public class BaseUtil {
 			return null;
 		}
 	}
-
+	
+	/**
+	 * 验证是否为Ajax
+	 * @param request
+	 * @return
+	 */
+	public static boolean isAjax( HttpServletRequest request ) {
+		return "XMLHttpRequest".equals(request.getHeader("X-Requested-With")) ? true : false;
+	}
+	
+	/**
+	 * 重定向
+	 * @param request
+	 * @param response
+	 */
+	public static void clearRedirectLogin(HttpServletRequest request,HttpServletResponse response){
+		try {
+			request.getSession().invalidate();
+			response.sendRedirect("/login");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public static void main(String[] args) {
 		System.out.println(uuid());
 	}

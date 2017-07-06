@@ -89,4 +89,16 @@
 	
 	<bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor"/>
 	
+	
+		<!-- 拦截器 -->
+	<mvc:interceptors>
+
+		<!-- 登录拦截器 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="org.alex.admin.web.interceptor.LoginInterceptor" />
+		</mvc:interceptor>
+	
+	</mvc:interceptors>
+	
 </beans>  

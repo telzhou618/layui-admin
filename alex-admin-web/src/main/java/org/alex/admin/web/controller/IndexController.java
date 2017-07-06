@@ -1,6 +1,7 @@
 package org.alex.admin.web.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * 首页控制器
@@ -10,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 public class IndexController{   
 	
-	@RequestMapping("/")
-	public String index(){
+	@RequestMapping(value = {"","/","/index"})
+	public String index(Model model){
 		return "index";
 	}
 	@RequestMapping("/welcome")
