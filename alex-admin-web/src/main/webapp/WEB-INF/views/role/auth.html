@@ -29,6 +29,18 @@
 		layui.use('myform');
 	</script>
 	 <script type="text/javascript">
+	 	//绑定表单数据
+	 	function bindCheck(){
+	 		var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
+    		var nodes = treeObj.getCheckedNodes(true);
+    		$("#authId").empty();
+    		var arr = [];
+    		$.each(nodes,function(i,n){
+    			arr.push(n.id);
+    		});
+    		$("#authId").val(arr.join());
+	 	}
+	 	
         var setting = {
             view: {
                 selectedMulti: false
@@ -46,20 +58,14 @@
             },
             callback:{
             	onCheck:function(treeId,treeNode){
-            		var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
-            		var nodes = treeObj.getCheckedNodes(true);
-            		$("#authId").empty();
-            		var arr = [];
-            		$.each(nodes,function(i,n){
-            			arr.push(n.id);
-            		});
-            		$("#authId").val(arr.join());
+            		bindCheck();
                 }
             }
         };
 
         $(document).ready(function(){
             $.fn.zTree.init($("#treeDemo"), setting, ${menuList});
+            bindCheck();
         });
 
     </script>
