@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.alex.admin.core.anno.Resource;
 import org.alex.admin.core.bean.Rest;
 import org.alex.admin.core.controller.PageController;
 import org.alex.admin.web.entity.SysRole;
@@ -39,6 +40,7 @@ public class RoleController extends PageController<SysRole, ISysRoleService>{
 	
 	@Autowired private ISysRoleMenuService sysRoleMenuService;
 	
+	@Resource("listRole")
 	@ResponseBody
 	@RequestMapping("/page")
 	public Rest page(
@@ -55,6 +57,7 @@ public class RoleController extends PageController<SysRole, ISysRoleService>{
 		
 	}
 	
+	@Resource("addRole")
 	@ResponseBody
 	@RequestMapping("/doAdd")
 	public Rest doAdd(@Valid SysRole role,BindingResult result){
@@ -69,6 +72,7 @@ public class RoleController extends PageController<SysRole, ISysRoleService>{
 	}
 	
 	
+	@Resource("updateStateRole")
 	@ResponseBody
 	@RequestMapping("/roleState")
 	public Rest roleState(String id,@RequestParam(value="roleState") Boolean bool){
@@ -80,11 +84,12 @@ public class RoleController extends PageController<SysRole, ISysRoleService>{
 	}
 	
 	/**
-	 * 执行编辑用户
+	 * 执行编辑角色
 	 * @param role
 	 * @param result
 	 * @return
 	 */
+	@Resource("editRole")
 	@ResponseBody
 	@RequestMapping("/doEdit")
 	public Rest doEdit(@Valid SysRole role,BindingResult result){
@@ -115,6 +120,7 @@ public class RoleController extends PageController<SysRole, ISysRoleService>{
 	 * @param model
 	 * @return
 	 */
+	@Resource("authRole")
 	@RequestMapping("/auth")
 	public String auth(String id,Model model){
 		
@@ -128,11 +134,12 @@ public class RoleController extends PageController<SysRole, ISysRoleService>{
 	
 
 	/**
-	 * 执行编辑用户
+	 * 执行角色授权
 	 * @param role
 	 * @param result
 	 * @return
 	 */
+	@Resource("authRole")
 	@ResponseBody
 	@RequestMapping("/doAuth")
 	public Rest doAuth(String roleId,String menuIds){
@@ -140,6 +147,7 @@ public class RoleController extends PageController<SysRole, ISysRoleService>{
 		return Rest.ok("权限分配成功!");
 	}
 
+	@Resource("deleteRole")
 	@Override
 	public Rest delete(String[] id) {
 		// TODO Auto-generated method stub

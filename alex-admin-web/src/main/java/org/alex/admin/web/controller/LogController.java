@@ -1,5 +1,6 @@
 package org.alex.admin.web.controller;
 
+import org.alex.admin.core.anno.Resource;
 import org.alex.admin.core.bean.Rest;
 import org.alex.admin.core.controller.PageController;
 import org.alex.admin.web.entity.SysLog;
@@ -33,6 +34,7 @@ public class LogController extends PageController<SysLog, ISysLogService>{
 	 * @param model
 	 * @return
 	 */
+	@Resource("listLog")
 	@ResponseBody
 	@RequestMapping("/page")
 	public Rest page(

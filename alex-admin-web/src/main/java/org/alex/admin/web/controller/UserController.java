@@ -58,7 +58,6 @@ public class UserController extends PageController<SysUser, ISysUserService>{
 		
 	}
 	
-	@Resource("addUser")
 	@Override
 	public String add(Model model){
 		List<SysRole> roleList = sysRoleService.selectList(new EntityWrapper<SysRole>().eq("roleState",1).orderBy("createTime"));
@@ -89,6 +88,7 @@ public class UserController extends PageController<SysUser, ISysUserService>{
 	}
 	
 	
+	@Resource("updateStateUser")
 	@ResponseBody
 	@RequestMapping("/userState")
 	public Rest userState(String id,@RequestParam(value="userState") Boolean bool){
@@ -120,7 +120,6 @@ public class UserController extends PageController<SysUser, ISysUserService>{
 	 * 编辑
 	 * @return
 	 */
-	@Resource("editUser")
 	@Override
 	public String edit(String id,Model model){
 		

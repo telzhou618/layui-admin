@@ -28,7 +28,7 @@ public class SwaggerConfig {
 	}
 
 	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder().title("轻量级权限管理框架")
+		return new ApiInfoBuilder().title("Alex轻量级权限管理框架")
 				.termsOfServiceUrl("http://blog.jdoop.cn/")
 				.description("springmvc + swagger2 轻量级权限管理框架")
 				.contact(new Contact("JamesZhou", "http://blog.jdoop.cn/", "gaojun.zhou@qq.com"))

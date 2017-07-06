@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.alex.admin.core.anno.Resource;
 import org.alex.admin.core.bean.Rest;
 import org.alex.admin.core.controller.PageController;
 import org.alex.admin.web.entity.SysMenu;
@@ -33,6 +34,7 @@ public class MenuController extends PageController<SysMenu, ISysMenuService>{
 	
 	@Autowired private ISysMenuService sysMenuService;
 	
+	@Resource("listMenu")
 	@ResponseBody
 	@RequestMapping("/page")
 	public Rest page(
@@ -54,6 +56,7 @@ public class MenuController extends PageController<SysMenu, ISysMenuService>{
 	 * @param result
 	 * @return
 	 */
+	@Resource("addMenu")
 	@ResponseBody
 	@RequestMapping("/doAdd")
 	public Rest doAdd(@Valid SysMenu menu,BindingResult result){
@@ -73,6 +76,7 @@ public class MenuController extends PageController<SysMenu, ISysMenuService>{
 	 * @param result
 	 * @return
 	 */
+	@Resource("editMenu")
 	@ResponseBody
 	@RequestMapping("/doEdit")
 	public Rest doEdit(@Valid SysMenu menu,BindingResult result){
@@ -99,14 +103,6 @@ public class MenuController extends PageController<SysMenu, ISysMenuService>{
 		return "menu";
 	}
 
-	/**
-	 * 新增菜单
-	 */
-	@Override
-	public String add(Model model) {
-		// TODO Auto-generated method stub
-		return super.add(model);
-	}
 
 	@Override
 	public String edit(String id, Model model) {
@@ -133,6 +129,7 @@ public class MenuController extends PageController<SysMenu, ISysMenuService>{
 	 * @param model
 	 * @return
 	 */
+	@Resource("addMenu")
 	@RequestMapping("/addItem")
 	public String addItem(String id, Model model) {
 		// TODO Auto-generated method stub
@@ -153,6 +150,7 @@ public class MenuController extends PageController<SysMenu, ISysMenuService>{
 	 * @param result
 	 * @return
 	 */
+	@Resource("addMenu")
 	@ResponseBody
 	@RequestMapping("/doAddItem")
 	public Rest doAddItem(@Valid SysMenu menu,BindingResult result){
