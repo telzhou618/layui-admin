@@ -2,7 +2,7 @@ package org.alex.admin.web.controller;
 
 import org.alex.admin.core.anno.Resource;
 import org.alex.admin.core.bean.Rest;
-import org.alex.admin.core.controller.PageController;
+import org.alex.admin.core.controller.CrudController;
 import org.alex.admin.web.entity.SysLog;
 import org.alex.admin.web.service.ISysLogService;
 import org.apache.commons.lang.StringUtils;
@@ -21,7 +21,7 @@ import com.baomidou.mybatisplus.plugins.Page;
  */
 @Controller
 @RequestMapping("/log")
-public class LogController extends PageController<SysLog, ISysLogService>{  
+public class LogController extends CrudController<SysLog, ISysLogService>{  
 	
 	@Autowired private ISysLogService sysLogService;
 	

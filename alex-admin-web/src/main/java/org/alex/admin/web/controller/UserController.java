@@ -8,7 +8,7 @@ import javax.validation.Valid;
 import org.alex.admin.core.anno.Log;
 import org.alex.admin.core.anno.Resource;
 import org.alex.admin.core.bean.Rest;
-import org.alex.admin.core.controller.PageController;
+import org.alex.admin.core.controller.CrudController;
 import org.alex.admin.web.entity.SysRole;
 import org.alex.admin.web.entity.SysUser;
 import org.alex.admin.web.entity.SysUserRole;
@@ -35,7 +35,7 @@ import com.google.common.collect.Lists;
  */
 @Controller
 @RequestMapping("/user")
-public class UserController extends PageController<SysUser, ISysUserService>{  
+public class UserController extends CrudController<SysUser, ISysUserService>{  
 	
 	@Autowired private ISysUserService sysUserService;
 	@Autowired private ISysRoleService sysRoleService;

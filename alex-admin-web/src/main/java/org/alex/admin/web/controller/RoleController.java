@@ -9,7 +9,7 @@ import javax.validation.Valid;
 import org.alex.admin.core.anno.Log;
 import org.alex.admin.core.anno.Resource;
 import org.alex.admin.core.bean.Rest;
-import org.alex.admin.core.controller.PageController;
+import org.alex.admin.core.controller.CrudController;
 import org.alex.admin.web.entity.SysRole;
 import org.alex.admin.web.entity.SysRoleMenu;
 import org.alex.admin.web.service.ISysMenuService;
@@ -33,7 +33,7 @@ import com.baomidou.mybatisplus.plugins.Page;
  */
 @Controller
 @RequestMapping("/role")
-public class RoleController extends PageController<SysRole, ISysRoleService>{  
+public class RoleController extends CrudController<SysRole, ISysRoleService>{  
 	
 	@Autowired private ISysRoleService sysRoleService;
 	
@@ -123,7 +123,6 @@ public class RoleController extends PageController<SysRole, ISysRoleService>{
 	 * @param model
 	 * @return
 	 */
-	@Resource("authRole")
 	@RequestMapping("/auth")
 	public String auth(String id,Model model){
 		
