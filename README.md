@@ -16,5 +16,5 @@ Spring MVC、Mybatis、Mybatis-Plus(Mybatis增强插件)、Mysql、Maven、Layui
 
 ### 开发进度
 -------------
-已完成99%，正在努力开发中...
+已完成99%，正在努力优化中...
 
