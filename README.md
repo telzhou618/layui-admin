@@ -14,6 +14,14 @@ Spring MVC、Mybatis、Mybatis-Plus(Mybatis增强插件)、Mysql、Maven、Layui
 3. cd alex-admin-web && mvn jetty:run
 4. http://localhost:8080
 
+### 参考项目
+-------------
+http://www.layui.com/
+
+http://fly.layui.com/case/2017/
+
+http://mp.baomidou.com/#/
+
 ### 开发进度
 -------------
 已完成99%，正在努力优化中...
