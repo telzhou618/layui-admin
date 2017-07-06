@@ -155,7 +155,7 @@ layui.define(['jquery', 'laytpl', 'layer', 'modal', 'ajax', 'laypage', 'form'], 
                         _this.page(1);
                     }
                 } else {
-                    layer.msg('请求数据出错，请稍后再试...');
+                    layer.msg(ret.msg);
                     return;
                 }
             }

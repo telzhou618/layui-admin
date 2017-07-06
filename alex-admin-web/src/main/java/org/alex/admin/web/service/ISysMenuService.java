@@ -32,4 +32,11 @@ public interface ISysMenuService extends IService<SysMenu> {
 	 */
 	List<Map<String, Object>> selectMenuByUid(String uid, String pid);
 	
+	/**
+	 * 获取当前用户的权限资源
+	 * @param uid
+	 * @return
+	 */
+	List<String> selectResourceByUid(String uid);
+	
 }

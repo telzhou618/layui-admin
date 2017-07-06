@@ -19,5 +19,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 public interface SysMenuMapper extends BaseMapper<SysMenu> {
 
 	List<Map<String, Object>> selectMenuByUid(@Param("uid") String uid, @Param("pid") String pid);
+
+	List<String> selectResourceByUid(@Param("uid") String uid);
 	
 }

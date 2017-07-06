@@ -32,4 +32,13 @@
 			ORDER BY sort ASC
 	</select>
 	
+	<select id="selectResourceByUid" resultType="java.lang.String">
+			SELECT  DISTINCT m.`resource` FROM sys_user_role ur 
+			LEFT JOIN sys_role_menu rm ON ur.`roleId` = rm.`roleId`
+			LEFT JOIN sys_menu m ON m.`id` = rm.`menuId`
+			WHERE ur.`userId` = #{uid}
+			AND m.`resource` IS NOT NULL
+			AND m.`resource` != ''
+	</select>
+	
 </mapper>

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.alex.admin.core.anno.Resource;
 import org.alex.admin.core.bean.Rest;
 import org.alex.admin.core.controller.PageController;
 import org.alex.admin.web.entity.SysRole;
@@ -40,6 +41,7 @@ public class UserController extends PageController<SysUser, ISysUserService>{
 	@Autowired private ISysUserRoleService sysUserRoleService;
 	
 	
+	@Resource("listUser")
 	@ResponseBody
 	@RequestMapping("/page")
 	public Rest page(
@@ -56,6 +58,7 @@ public class UserController extends PageController<SysUser, ISysUserService>{
 		
 	}
 	
+	@Resource("addUser")
 	@Override
 	public String add(Model model){
 		List<SysRole> roleList = sysRoleService.selectList(new EntityWrapper<SysRole>().eq("roleState",1).orderBy("createTime"));
@@ -63,6 +66,7 @@ public class UserController extends PageController<SysUser, ISysUserService>{
 		return "user/add";
 	}
 	
+	@Resource("addUser")
 	@ResponseBody
 	@RequestMapping("/doAdd")
 	public Rest doAdd(@Valid SysUser user,String password2,@RequestParam(value = "roleIds[]",required=false)String[] roleIds,BindingResult result){
@@ -100,6 +104,7 @@ public class UserController extends PageController<SysUser, ISysUserService>{
 	 * @param id
 	 * @return
 	 */
+	@Resource("deleteUser")
 	@ResponseBody
 	@RequestMapping("/delete")
 	public Rest delete(String[] id){
@@ -115,6 +120,7 @@ public class UserController extends PageController<SysUser, ISysUserService>{
 	 * 编辑
 	 * @return
 	 */
+	@Resource("editUser")
 	@Override
 	public String edit(String id,Model model){
 		
@@ -130,6 +136,7 @@ public class UserController extends PageController<SysUser, ISysUserService>{
 	 * @param result
 	 * @return
 	 */
+	@Resource("editUser")
 	@ResponseBody
 	@RequestMapping("/doEdit")
 	public Rest doEdit(SysUser user,String password2,@RequestParam(value = "roleIds[]",required=false) String[] roleIds,BindingResult result){

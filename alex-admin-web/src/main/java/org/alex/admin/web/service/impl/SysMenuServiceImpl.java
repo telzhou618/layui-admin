@@ -60,4 +60,10 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
 		return sysMenuMapper.selectMenuByUid(uid, pid);
 	}
 
+	@Override
+	public List<String> selectResourceByUid(String uid) {
+		// TODO Auto-generated method stub
+		return sysMenuMapper.selectResourceByUid(uid);
+	}
+
 }

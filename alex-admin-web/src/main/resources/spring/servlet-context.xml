@@ -98,6 +98,14 @@
 			<mvc:mapping path="/**" />
 			<bean class="org.alex.admin.web.interceptor.LoginInterceptor" />
 		</mvc:interceptor>
+		
+		<!-- 权限拦截器 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="org.alex.admin.web.interceptor.ResourceInterceptor">
+				<property name="sysMenuService" ref="sysMenuServiceImpl"></property>
+			</bean>
+		</mvc:interceptor>
 	
 	</mvc:interceptors>
 	

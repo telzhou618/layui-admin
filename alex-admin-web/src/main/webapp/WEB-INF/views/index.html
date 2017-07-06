@@ -12,9 +12,7 @@
 				<a href="#" class="logo">Alex-权限管理系统</a>
 			    <!-- 顶部右侧菜单 -->
 			    <ul class="layui-nav top_menu">
-			    	<li class="layui-nav-item showNotice" id="showNotice" pc>
-						<a href="javascript:;"><i class="iconfont icon-gonggao"></i><cite>系统公告</cite></a>
-					</li>
+			    	
 			    	<li class="layui-nav-item" mobile>
 			    		<a href="javascript:;" data-url="page/user/changePwd.html"><i class="iconfont icon-shezhi1" data-icon="icon-shezhi1"></i><cite>设置</cite></a>
 			    	</li>
@@ -23,8 +21,7 @@
 			    	</li>
 					<li class="layui-nav-item" pc>
 						<a href="javascript:;">
-							<img src="images/face.jpg" class="layui-circle" width="35" height="35">
-							<cite>Admin</cite>
+							<cite>${session_user.userName!"游客"}</cite>
 						</a>
 						<dl class="layui-nav-child">
 							<dd><a href="javascript:;" data-url="page/user/userInfo.html"><i class="iconfont icon-zhanghu" data-icon="icon-zhanghu"></i><cite>个人资料</cite></a></dd>
@@ -38,8 +35,8 @@
 		<!-- 左侧导航 -->
 		<div class="layui-side layui-bg-black">
 			<div class="user-photo">
-				<a class="img" title="我的头像" ><img src="images/face.jpg"></a>
-				<p>你好！<span class="userName">Admin</span>, 欢迎登录</p>
+				<a class="img" title="我的头像" ><img src="${session_user.userImg!"/images/face.jpg"}"></a>
+				<p>你好！<span class="userName">${session_user.userName!"游客"}</span>, 欢迎登录</p>
 			</div>
 			<div class="navBar layui-side-scroll"></div>
 		</div>
