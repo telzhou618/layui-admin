@@ -1,6 +1,6 @@
 # alex-admin
 ### 轻量级权限管理框架
-http://alex.admin.jdoop.cn/
+http://alex.admin.jdoop.cn
 账号/密码:test123/test123
 
 ### 技术选型
