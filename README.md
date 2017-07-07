@@ -26,4 +26,4 @@ http://mp.baomidou.com/#/
 -------------
 已完成99%，正在努力优化中...
 
-![image](https://github.com/alexdoop/alex-admin/blob/master/images/p1.png)
+![image](https://github.com/alexdoop/alex-admin/blob/master/imgs/p1.png)
