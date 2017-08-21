@@ -3,10 +3,10 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.alex</groupId>
-	<artifactId>alex-admin</artifactId>
+	<artifactId>layui-admin</artifactId>
 	<packaging>pom</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>alex-admin Maven Webapp</name>
+	<name>layui-admin Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 
 
@@ -234,7 +234,7 @@
 		</plugins>
 	</build>
 	<modules>
-		<module>alex-admin-core</module>
-		<module>alex-admin-web</module>
+		<module>layui-admin-core</module>
+		<module>layui-admin-web</module>
 	</modules>
 </project>
