@@ -1,7 +1,5 @@
 # layui-admin
 ### 轻量级权限管理框架
-http://alex.admin.jdoop.cn
-账号/密码:test123/test123
 
 ### 技术选型
 -------------
@@ -13,6 +11,7 @@ Layui、Spring MVC、Mybatis、Mybatis-Plus(Mybatis增强插件)、Mysql、Maven
 2. cd ~/alex-admin && mvn install
 3. cd alex-admin-web && mvn jetty:run
 4. http://localhost:8080
+5. 账号/密码:admin/admin888
 
 ### 参考项目
 -------------
